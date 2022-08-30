@@ -14,5 +14,9 @@
 
         <item name="fontFamily">@font/montserrat_extrabold</item>
         <!-- Customize your theme here. -->
+
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/color_bg_selected</item>
+        <item name="android:windowSplashScreenBrandingImage" tools:targetApi="s">@mipmap/ic_launcher</item>
+
     </style>
 </resources>

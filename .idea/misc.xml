@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/font/montserrat_thin.xml" value="0.38645833333333335" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/list_item.xml" value="1.0" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2395" />
       </map>

@@ -138,7 +138,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun getLocationPermission() {
 
-        if (!ActivityCompat.shouldShowRequestPermissionRationale(
+        if (ActivityCompat.shouldShowRequestPermissionRationale(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
             )
@@ -164,7 +164,7 @@ class HomeActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 101 && grantResults.size == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == 101 && grantResults.size == 2 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
             //go to home page
             dialog?.dismiss()
             getLocation()
