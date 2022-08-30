@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.suri.weather.model.Hour" />
+        <variable
+            name="selected"
+            type="com.suri.weather.model.Hour" />
+    </data>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    app:cardBackgroundColor="@{item==selected ? @color/color_bg_selected: @color/color_bg_unselected}"
+    app:cardCornerRadius="@dimen/_16sdp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingVertical="@dimen/_6sdp"
+        android:paddingHorizontal="@dimen/_6sdp"
+        >
+
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="18:00"
+            app:setTime="@{item.time ?? item.last_updated}"
+            android:textColor="@{item==selected ? @color/color_text_selected : @color/color_text_unselected}"
+            android:textSize="@dimen/_10sdp"
+            />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_location"
+            app:loadImage="@{item.condition.icon}"
+            android:layout_marginVertical="@dimen/_4sdp"
+
+            app:layout_constraintLeft_toRightOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="23°C"
+            android:text="@{item.temp_c+`°C`}"
+            android:textColor="@{item==selected ? @color/color_text_selected : @color/color_text_unselected}"
+            android:textSize="@dimen/_10sdp"
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+</layout>

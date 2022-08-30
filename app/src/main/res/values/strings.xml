@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="todo">TODO</string>
+    <string name="weather_api">a9c8922690dc4d599d660838223008</string>
+    <string name="permission_desc">Give a permission for getting your location</string>
+    <string name="allow">Allow</string>
+</resources>
