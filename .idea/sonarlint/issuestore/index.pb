@@ -29,3 +29,17 @@ e
 5app/src/main/java/com/suri/weather/model/Condition.kt,8/d/8d4c0086b0add9d1f17336aa153bd5a3b34d1844
 _
 /app/src/main/java/com/suri/weather/model/Day.kt,e/e/ee1f487da53c98c097bfc8ec2e161cf76f5ba3f9
+T
+$.idea/codeStyles/codeStyleConfig.xml,d/d/dd7b3350c29c49497756c7f32c69a3bed18b1cba
+L
+.idea/codeStyles/Project.xml,6/e/6ecd6000a7b6f4a2884412ff19f74193ed089648
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+`
+0app/src/main/java/com/suri/weather/model/Hour.kt,f/c/fcb2fba3b615c7bb03456de20d6e05223d032512
+a
+1app/src/main/java/com/suri/weather/utils/Utils.kt,3/6/3629b29bd212526ce8b10ffda5db97a2f6539043
+@
+app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
+n
+>app/src/main/java/com/suri/weather/view_model/HomeViewModel.kt,6/4/64094040954541bf1983681ff1b9b3208c21e22b

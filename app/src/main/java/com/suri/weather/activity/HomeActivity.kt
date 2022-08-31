@@ -140,11 +140,6 @@ class HomeActivity : AppCompatActivity() {
         dialog?.show()
     }
 
-    override fun onBackPressed() {
-        dialog?.dismiss()
-        super.onBackPressed()
-    }
-
 
     private fun requestPermission() {
 
