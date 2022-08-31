@@ -23,7 +23,7 @@ data class Hour(
     val temp_c: Double,
     val temp_f: Double,
     var time: String?,
-    val time_epoch: Int,
+    var time_epoch: Long,
     val uv: Double,
     val vis_km: Double,
     val vis_miles: Double,

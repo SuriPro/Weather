@@ -16,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -51,6 +52,7 @@ class HomeActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
@@ -59,12 +61,12 @@ class HomeActivity : AppCompatActivity() {
         locationManager =
             getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-        getLocation()
-
         viewModel = ViewModelProvider(
             this,
             MyViewModelFactory(this, "HOME_VM")
         )[HomeViewModel::class.java]
+
+        getLocation()
 
         viewModel.getError().observe(this) {
             Toast.makeText(applicationContext, it, Toast.LENGTH_LONG).show()
@@ -87,6 +89,7 @@ class HomeActivity : AppCompatActivity() {
     private fun getLocation() {
         if (checkPermission()) {
             if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                viewModel.loadingStatus.set("Fetching current location")
                 fusedLocationProviderClient.getCurrentLocation(
                     LocationRequest.PRIORITY_HIGH_ACCURACY,
                     object : CancellationToken() {
@@ -113,10 +116,12 @@ class HomeActivity : AppCompatActivity() {
                 }
             } else {
                 //request to enable location
+                viewModel.loadingStatus.set("Waiting for a turn ON location")
                 alertLocation()
             }
         } else {
             //show bottom sheet and get permission
+            viewModel.loadingStatus.set("Waiting for a location permission")
             showBottomSheet()
         }
     }
@@ -130,32 +135,27 @@ class HomeActivity : AppCompatActivity() {
         val btn = dialog?.findViewById<MaterialButton>(R.id.btn_location)
 
         btn?.setOnClickListener {
-            getLocationPermission()
+            requestPermission()
         }
         dialog?.show()
     }
 
+    override fun onBackPressed() {
+        dialog?.dismiss()
+        super.onBackPressed()
+    }
 
-    private fun getLocationPermission() {
 
-        if (ActivityCompat.shouldShowRequestPermissionRationale(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            )
-        ) {
-            //show alert for permission
-            alertPermission()
-        } else {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ),
-                101
-            )
-        }
+    private fun requestPermission() {
 
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ),
+            101
+        )
     }
 
     override fun onRequestPermissionsResult(
@@ -170,8 +170,24 @@ class HomeActivity : AppCompatActivity() {
             getLocation()
         } else {
             //permission denied
-            Toast.makeText(applicationContext, "Permission Denied", Toast.LENGTH_SHORT).show()
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                //show alert for permission
+                alertPermission(::requestPermission)
+            } else {
+                Toast.makeText(applicationContext, "Permission Denied", Toast.LENGTH_SHORT).show()
+                alertPermission(::intentToSetting)
+            }
         }
+    }
+
+    private fun intentToSetting(){
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        intent.data = Uri.fromParts("package", packageName, null)
+        permissionResult.launch(intent)
     }
 
 
@@ -186,7 +202,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
 
-    private fun alertPermission() {
+    private fun alertPermission(onClick:()->Unit) {
 
         val builder = AlertDialog.Builder(this)
 
@@ -195,10 +211,9 @@ class HomeActivity : AppCompatActivity() {
             setTitle("Permission Denied!")
             setMessage("Location permission need to get current weather of your location")
             setPositiveButton("OK") { _, _ ->
-                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                intent.data = Uri.fromParts("package", packageName, null)
-                permissionResult.launch(intent)
+                onClick()
             }
+            setNegativeButton("Cancel",null)
             show()
         }
     }
@@ -220,7 +235,7 @@ class HomeActivity : AppCompatActivity() {
 
         val txt = dialog?.findViewById<TextView>(R.id.txt)
         val btn = dialog?.findViewById<MaterialButton>(R.id.btn_location)
-        txt?.text = "Device location is turned off, Turn on the device location"
+        txt?.text = "Device location is turned off,Please turn on the device location to get current location"
         btn?.text = "Enable"
 
         btn?.setOnClickListener {

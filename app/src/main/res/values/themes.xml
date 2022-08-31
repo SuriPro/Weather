@@ -19,4 +19,14 @@
         <item name="android:windowSplashScreenBrandingImage" tools:targetApi="s">@mipmap/ic_launcher</item>
 
     </style>
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <!-- Set the splash screen background, animated icon, and animation duration. -->
+        <item name="windowSplashScreenBackground">@color/color_bg_selected</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/app_icon</item>
+        <!-- Set the theme of the Activity that directly follows your splash screen. -->
+        <!-- Required -->
+        <item name="postSplashScreenTheme">@style/Theme.Weather</item>
+    </style>
+
 </resources>

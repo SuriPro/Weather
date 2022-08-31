@@ -33,11 +33,11 @@
 
             <ImageView
                 android:id="@+id/logo"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/ic_location"
+                android:src="@drawable/app_icon"
 
                 app:layout_constraintLeft_toRightOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -182,7 +182,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Rain"
+                                android:text="Chance of rain"
                                 android:textStyle="normal"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_10sdp" />
@@ -562,6 +562,7 @@
 
 
             <ProgressBar
+                android:id="@+id/loader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.INVISIBLE}"
@@ -570,6 +571,20 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_loading_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.loadingStatus}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp"
+                android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.INVISIBLE}"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loader"
+                tools:text="Fetching Location" />
 
             <androidx.constraintlayout.widget.Group
                 android:layout_width="wrap_content"
