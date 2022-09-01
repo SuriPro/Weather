@@ -49,10 +49,7 @@
             android:contentDescription="@string/todo"
             android:src="@drawable/ic_location"
             app:loadImage="@{item.condition.icon}"
-            android:layout_marginVertical="@dimen/_4sdp"
-
-            app:layout_constraintLeft_toRightOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginVertical="@dimen/_4sdp"/>
 
         <TextView
             android:layout_width="wrap_content"

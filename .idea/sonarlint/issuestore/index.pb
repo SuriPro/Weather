@@ -19,8 +19,6 @@ i
 9app/src/main/java/com/suri/weather/adapter/HourAdapter.kt,4/3/4311065ce53c5178048ef0e591c5b8de9ccef8ae
 g
 7app/src/main/java/com/suri/weather/model/Forecastday.kt,0/d/0d9070bfe056ea053a33650d7c00bbb777f02cf4
-a
-1app/src/main/java/com/suri/weather/utils/utils.kt,0/4/041fb02d07015805135313dae7bd336ec8b9c914
 s
 Capp/src/main/java/com/suri/weather/view_model/MyViewModelFactory.kt,f/2/f273c38646da5a3ed5488bb345b58c71da4c006c
 a
@@ -33,8 +31,6 @@ T
 $.idea/codeStyles/codeStyleConfig.xml,d/d/dd7b3350c29c49497756c7f32c69a3bed18b1cba
 L
 .idea/codeStyles/Project.xml,6/e/6ecd6000a7b6f4a2884412ff19f74193ed089648
-P
- app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 `
 0app/src/main/java/com/suri/weather/model/Hour.kt,f/c/fcb2fba3b615c7bb03456de20d6e05223d032512
 a
