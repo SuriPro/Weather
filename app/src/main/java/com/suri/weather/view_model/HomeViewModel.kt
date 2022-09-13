@@ -49,7 +49,7 @@ class HomeViewModel constructor(private val context: Context) : ViewModel() {
                 )
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
-                    .subscribe(this::handleResponse, this::handleError)
+                    .subscribe(::handleResponse, ::handleError)
             )
         } else
             error.value = "Check Internet Connection"

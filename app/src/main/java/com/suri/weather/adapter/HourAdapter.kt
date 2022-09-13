@@ -10,6 +10,7 @@ import com.suri.weather.model.Hour
 class HourAdapter(private var hours: List<Hour>, var selectedHour: ObservableField<Hour>) : RecyclerView.Adapter<HourAdapter.MyViewHolder>() {
 
     var prev : Int=0
+
     inner class MyViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Hour){

@@ -38,7 +38,7 @@ import java.util.*
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
-    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var locationManager: LocationManager
 
     lateinit var viewModel: HomeViewModel
@@ -63,7 +63,7 @@ class HomeActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(
             this,
-            MyViewModelFactory(this, "HOME_VM")
+            MyViewModelFactory(applicationContext, "HOME_VM")
         )[HomeViewModel::class.java]
 
         getLocation()
